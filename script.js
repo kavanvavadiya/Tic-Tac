@@ -1,7 +1,7 @@
 console.log("welcome to my game")
-let music = new Audio("Music/ting.mp3")
+let music = new Audio("Music/music.mp3")
 let audioTurn = new Audio("Music/ding.mp3")
-let gameover = new Audio("Music/ting.mp3")
+let gameover = new Audio("Music/win.mp3")
 let isgameover = false;
 let turn = "X";
 let playerturn = document.querySelector('.playerturn')
@@ -57,6 +57,8 @@ const checkWin =()=>{
             document.querySelector('.info').innerText = "Player " + win  + " Won " ;
             isgameover = true;
             if(round.innerText == 5){
+                // audioTurn.pause();
+            
                 if(score1.innerText > score2.innerText){
                     msg.innerText = "Player 1 won";
                 }
@@ -74,6 +76,9 @@ const checkWin =()=>{
 
                     round.innerText++;
                 }
+                music.pause();
+                gameover.play();
+                // gameover.loop = true;
                 document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = '156px';
             }
 
@@ -91,9 +96,14 @@ Array.from(boxes).forEach(element => {
             if(!isgameover){
 
                 if(boxtext.innerText === ''){
+                    music.play();
+                    music.loop = true;
                     boxtext.innerText = turn;
                  turn = changeTurn();
                     audioTurn.play();
+                    audioTurn.playbackRate = 5;
+
+                    // audioTurn.played();
                     checkWin();
                     if(!isgameover)
                     document.getElementsByClassName("info")[0].innerText = "Turn for Player " + playerturn.innerText;
