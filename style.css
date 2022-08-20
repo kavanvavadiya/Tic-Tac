@@ -42,8 +42,10 @@
     font-size: 6vw;
 }
 .msg{
-    font-size: 8vw;
+    font-size: 3vw;
     font-weight: bolder;
+    color: blue;
+    text-align: center;
 }
 
 .box:hover {
@@ -61,8 +63,8 @@
 
 }
 
-.info {
-    font-size: 28px;
+.info,.team {
+    font-size: 20px;
 }
 .infoo{
     margin-top: 5vw;

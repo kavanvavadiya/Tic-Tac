@@ -11,6 +11,14 @@ let score1 = document.querySelector('.score1')
 let score2 = document.querySelector('.score2')
 let msg = document.querySelector(".msg")
 
+// let player1 = prompt("Please enter your name", "Player 1");
+// let player2 = prompt("Please enter your name", "Player 2");
+let player1 = "Player 1";
+let player2 = "Player 2";
+// console.log(player1)
+// console.log(player2)
+document.querySelector('.player1').innerText = player1;
+document.querySelector('.player2').innerText = player2;
 sign1.innerText = "X";
 sign2.innerText = "0";
 score1.innerText = 0;
@@ -47,24 +55,25 @@ const checkWin =()=>{
     ]
     wins.forEach(e => {
         if((boxtexts[e[0]].innerText ===  boxtexts[e[1]].innerText) && (boxtexts[e[2]].innerText ===  boxtexts[e[1]].innerText) && (boxtexts[e[0]].innerText !== "")){
-            let win = playerturn.innerText==="1"?"2":"1";
-            if(win==1){
+            let win = playerturn.innerText==="1"?player2:player1;
+            if(win==player1){
                 score1.innerText++;
             }
-            if(win==2){
+            if(win==player2){
                 score2.innerText++;
             }
-            document.querySelector('.info').innerText = "Player " + win  + " Won " ;
+            document.querySelector('.info').innerText = "Player " + win  + " Win " ;
             isgameover = true;
             if(round.innerText == 5){
                 // audioTurn.pause();
             
                 if(score1.innerText > score2.innerText){
-                    msg.innerText = "Player 1 won";
+                    msg.innerText = player1  + " Won ";
                 }
                 else if(score1.innerText < score2.innerText){
 
-                    msg.innerText = "Player 2 won";}
+                    msg.innerText = player2  + " Won ";
+                }
                     
                     else{
                         msg.innerText = "Match Draw";
@@ -114,6 +123,7 @@ Array.from(boxes).forEach(element => {
 
 // Add onclick lisitner to reset button
 reset.addEventListener('click',()=>{
+    msg.innerText = "";
     let boxtexts = document.querySelectorAll('.boxtext')
     Array.from(boxtexts).forEach(element =>{
         element.innerText = ""
@@ -130,6 +140,7 @@ reset.addEventListener('click',()=>{
             document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = '0px';
 })
 playagain.addEventListener('click',()=>{
+    msg.innerText = "";
     let boxtexts = document.querySelectorAll('.boxtext')
     Array.from(boxtexts).forEach(element =>{
         element.innerText = ""
@@ -151,4 +162,18 @@ playagain.addEventListener('click',()=>{
     isgameover = false
             document.getElementsByClassName("info")[0].innerText = "Turn for Player " + playerturn.innerText;
             document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = '0px';
+})
+name1.addEventListener('click',()=>{
+    player1 = prompt("Please enter your name", player1);
+    document.querySelector('.player1').innerText = player1;
+// document.querySelector('.player2').innerText = player2;
+// let player2 = prompt("Please enter your name", "Player 2");
+   
+})
+name2.addEventListener('click',()=>{
+    player2 = prompt("Please enter your name", player2);
+    // document.querySelector('.player1').innerText = player1;
+document.querySelector('.player2').innerText = player2;
+// let player2 = prompt("Please enter your name", "Player 2");
+   
 })
